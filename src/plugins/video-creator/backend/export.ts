@@ -118,7 +118,7 @@ export async function exportFrames(controller: Controller) {
   controller.updateView();
 }
 
-function download(url: string, filename: string) {
+export function download(url: string, filename: string) {
   // https://gist.github.com/SlimRunner/3b0a7571f04d3a03bff6dbd9de6ad729#file-desmovie-user-js-L325
   // no point supporting anything besides Chrome (no SharedArrayBuffer support)
   var a = document.createElement("a");

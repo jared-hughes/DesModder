@@ -89,11 +89,18 @@ export async function captureSlider(controller: Controller) {
     });
     try {
       await captureAndApplyFrame(controller);
+      // i >= 1 because we still want a preview
+      if (i >= 1) {
+        // temporarily just delete the frame and download
+        controller.tempDownloadSingle(i - 1);
+      }
     } catch {
       // should be paused due to cancellation
       break;
     }
   }
+  // clean up the last frame
+  controller.tempDownloadSingle(numSteps);
 }
 
 function cancelActionCapture(controller: Controller) {

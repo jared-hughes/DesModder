@@ -7,7 +7,12 @@ import {
   ExpressionModel,
 } from "desmodder";
 import { isValidNumber, isValidLength, escapeRegex } from "./backend/utils";
-import { OutFileType, exportFrames, initFFmpeg } from "./backend/export";
+import {
+  OutFileType,
+  exportFrames,
+  initFFmpeg,
+  download,
+} from "./backend/export";
 import { CaptureMethod, SliderSettings, capture } from "./backend/capture";
 
 type FocusedMQ =
@@ -377,5 +382,13 @@ export default class Controller {
 
   isFocused(location: FocusedMQ) {
     return this.focusedMQ === location;
+  }
+
+  tempDownloadSingle(index: number) {
+    // remove the first frame and download it
+    const singleFrame = this.frames.shift();
+    if (singleFrame === undefined) return;
+    const s: string = "" + index;
+    download(singleFrame, `frame_${"0".repeat(5 - s.length) + s}`);
   }
 }
