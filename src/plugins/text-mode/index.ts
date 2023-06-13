@@ -33,9 +33,13 @@ export default class TextMode extends PluginController {
           (this as any).__proto__.markTickRequiredNextFrame.apply(this);
         }
       };
+      // shouldRenderList=false avoids the old style circles from appearing and
+      // affecting the selectors for the popover menu placement.
+      Calc.controller.shouldRenderList = () => false;
     } else {
       // Revert back to the old markTickRequiredNextFrame given by prototype
       delete (Calc.controller as any).markTickRequiredNextFrame;
+      delete (Calc.controller as any).shouldRenderList;
     }
     Calc.controller.updateViews();
   }

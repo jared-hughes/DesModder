@@ -192,6 +192,8 @@ interface CalcPrivate {
     };
     /** Mark UI tick required to convert render shells to full item lines */
     markTickRequiredNextFrame: () => void;
+    /** Only affects showing header and list */
+    shouldRenderList: () => boolean;
     getPlayingSliders: () => { latex: string }[];
     _tickSliders: (nowTimestamp: number) => void;
     computeMajorLayout: () => { grapher: { width: number } };
