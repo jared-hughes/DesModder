@@ -98,7 +98,8 @@ export const DStaticMathquillView = Fragile.StaticMathquillView;
 
 export abstract class TooltipComponent extends ClassComponent<{
   tooltip: string;
-  gravity?: "n" | "e" | "s" | "w";
+  gravity?: "n" | "e" | "s" | "w" | "ne" | "nw" | "se" | "sw";
+  disabled?: boolean;
 }> {}
 
 export const Tooltip = Fragile.Tooltip;

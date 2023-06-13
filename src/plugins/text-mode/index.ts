@@ -1,8 +1,12 @@
 import { PluginController } from "../PluginController";
 import { onCalcEvent, analysisStateField } from "./LanguageServer";
 import getText from "./up/getText";
+import TextModeExprHeader from "./view/TextModeExprHeader";
+import TextModeToggle from "./view/TextModeToggle";
 import { initView, startState } from "./view/editor";
+import { redo, redoDepth, undo, undoDepth } from "@codemirror/commands";
 import { EditorView, ViewUpdate } from "@codemirror/view";
+import { DCGView } from "DCGView";
 import { Calc } from "globals/window";
 import { keys } from "utils/depUtils";
 
@@ -117,6 +121,36 @@ export default class TextMode extends PluginController {
 
   onEditorUpdate(update: ViewUpdate) {
     if (update.docChanged || update.selectionSet) selectFromText(update.view);
+  }
+
+  textModeExprHeaderView() {
+    return DCGView.createElement(TextModeExprHeader as any, {
+      controller: () => Calc.controller,
+      textMode: () => this,
+    });
+  }
+
+  textModeToggleView() {
+    return DCGView.createElement(TextModeToggle as any, {
+      controller: () => Calc.controller,
+      textMode: () => this,
+    });
+  }
+
+  canUndo() {
+    return !!this.view && undoDepth(this.view.state) > 0;
+  }
+
+  canRedo() {
+    return !!this.view && redoDepth(this.view.state) > 0;
+  }
+
+  undo() {
+    this.view && undo(this.view);
+  }
+
+  redo() {
+    this.view && redo(this.view);
   }
 }
 

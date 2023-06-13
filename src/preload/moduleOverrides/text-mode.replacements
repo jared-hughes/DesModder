@@ -46,29 +46,8 @@ isShowKeypadButtonVisible () {
 ```js
 $DCGView.createElement(
   $DCGView.Components.If,
-  {
-    predicate: () => DSM.textMode && !this.controller.isInEditListMode()
-  },
-  () => $DCGView.createElement(
-      $Tooltip,
-      {
-        tooltip: () => DesModder.format("text-mode-toggle"),
-        gravity: () => this.controller.isNarrow() ? 'n' : 's'
-      },
-      $DCGView.createElement(
-        'span',
-        {
-          class: $DCGView.const('dcg-icon-btn'),
-          handleEvent: $DCGView.const('true'),
-          role: $DCGView.const('button'),
-          tabindex: $DCGView.const('0'),
-          onTap: () => DSM.textMode?.toggleTextMode()
-        },
-        $DCGView.createElement('i', {
-          class: $DCGView.const('dcg-icon-title')
-        })
-      )
-    )
+  { predicate: () => DSM.textMode && !this.controller.isInEditListMode() },
+  () => DSM.textMode.textModeToggleView()
 ),
 $DCGView.Components.IfElse(
   () => !this.controller.getGraphSettings().config.graphpaper && window.DesModder,
@@ -134,4 +113,30 @@ $ImageIconView = class extends $.Class {
 *Replace* `ImageIconView` with
 ```js
 $ImageIconView = (window.DesModderFragile ??= {}).ImageIconView
+```
+
+## Replace Expr Header
+
+*Description* `Show custom toolbar in Text Mode`
+
+*Find* => `from`
+
+```js
+$DCGView.createElement(
+  $If,
+  { predicate: () => this.controller.shouldRenderList() ____ },
+  () => $.createElement($, { ____ } ____)
+)
+```
+
+*Replace* `from` with
+
+```js
+$DCGView.Components.IfElse(
+  () => !DSM.textMode?.inTextMode,
+  {
+    true: () => __from__,
+    false: () => DSM.textMode.textModeExprHeaderView()
+  }
+)
 ```

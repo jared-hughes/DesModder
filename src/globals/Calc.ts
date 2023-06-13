@@ -52,6 +52,10 @@ export type DispatchedEvent =
       location: { type: string };
     }
   | {
+      type: "hide-expressions-list";
+      focusShowIcon: boolean;
+    }
+  | {
       type: "on-evaluator-changes";
       changes: Record<string, EvaluatorChange>;
       timingData: TimingData;
@@ -199,10 +203,13 @@ interface CalcPrivate {
     computeMajorLayout: () => { grapher: { width: number } };
     isGeometry: () => boolean;
     isGeoUIActive: () => boolean;
+    isNarrow: () => boolean;
     isNarrowGeometryHeader: () => boolean;
     expressionSearchOpen: boolean;
     /** Returns a function to call to unsubscribe */
     subToChanges: (cb: () => void) => () => void;
+    s: (s: string) => string;
+    anyItemDependsOnRandomSeed: () => boolean;
   };
   _calc: {
     globalHotkeys: TopLevelComponents;
