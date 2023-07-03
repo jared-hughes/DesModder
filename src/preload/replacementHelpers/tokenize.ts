@@ -37,10 +37,10 @@ export function tokenizeReplacement(
         depth,
         text: line.slice(depth).trim(),
       });
-    } else if (line.startsWith("*")) {
-      const match = line.match(/^\*([^*]+)\*(.*)$/);
+    } else if (line.startsWith("**")) {
+      const match = line.match(/^\*\*([^*]+)\*\*(.*)$/);
       if (match === null)
-        errorOnLine(`Line starting with '*' missing second '*'`, i, line);
+        errorOnLine(`Line starting with '**' missing second '**'`, i, line);
       const parts = match[2].split("=>");
       if (parts.length > 2)
         errorOnLine("Duplicate '=>'; only one is allowed", i, line);

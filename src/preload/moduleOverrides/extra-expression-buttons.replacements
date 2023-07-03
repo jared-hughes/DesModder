@@ -1,6 +1,6 @@
 # Replacements for Extra Expression Buttons
 
-*plugin* `pin-expressions` `folder-tools`
+**plugin** `pin-expressions` `folder-tools`
 
 TODO: work this into an API so it doesn't need a ton of injected code.
 
@@ -8,9 +8,9 @@ TODO: work this into an API so it doesn't need a ton of injected code.
 
 Insert before the delete button but after the other buttons.
 
-*Description* `Show buttons like "pin" and "merge folder."`
+**Description** `Show buttons like "pin" and "merge folder."`
 
-*Find*
+**Find**
 ```js
 .createElement(
   'span',
@@ -29,7 +29,7 @@ Insert before the delete button but after the other buttons.
 )
 ```
 
-*Replace* `delete_button` with
+**Replace** `delete_button` with
 ```js
 // pin-unpin
 $DCGView.createElement(
@@ -100,9 +100,9 @@ __delete_button__
 
 ## Allow pin/unpin and dump/merge without exiting ELM
 
-*Description* `Stay in "Edit List" mode after unpinning an expression or dumping a folder`
+**Description** `Stay in "Edit List" mode after unpinning an expression or dumping a folder`
 
-*Find* => `outer`
+**Find** => `outer`
 ```js
 if (this.controller.isInEditListMode() && !$uee($e)) {
     this.exitEditListMode();
@@ -110,12 +110,12 @@ if (this.controller.isInEditListMode() && !$uee($e)) {
 }
 ```
 
-*Find* inside `outer` => `from`
+**Find** inside `outer` => `from`
 ```js
 this.exitEditListMode()
 ```
 
-*Replace* `from` with
+**Replace** `from` with
 ```js
 (event.target.closest(".dsm-stay-edit-list-mode") || this.exitEditListMode())
 ```

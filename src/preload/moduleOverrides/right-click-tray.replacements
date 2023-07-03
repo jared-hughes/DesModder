@@ -1,12 +1,12 @@
 # Replacements for Right-click tray
 
-*plugin* `right-click-tray`
+**plugin** `right-click-tray`
 
 ## Allow right-click to open long-hold menus
 
-*Description* `Allow right-click to open long-hold menus`
+**Description** `Allow right-click to open long-hold menus`
 
-*Find*
+**Find**
 ```js
 $DCGView.addCustomAttribute("onLongHold", $callback => ({
   bindings: {
@@ -17,7 +17,7 @@ $DCGView.addCustomAttribute("onLongHold", $callback => ({
 }));
 ```
 
-*Replace* `body` with
+**Replace** `body` with
 ```js
 __body__
 // allow-ids: of

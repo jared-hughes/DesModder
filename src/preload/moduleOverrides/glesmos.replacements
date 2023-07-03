@@ -1,15 +1,15 @@
 # Replacements for GLesmos
 
-*plugin* `GLesmos`
+**plugin** `GLesmos`
 
 ## Add a fill menu option for switching an expression to glesmos rendering mode
 
 Warning: this is duplicated below ("Add a lines menu option...") rather than
 adding an extra section to the menu view.
 
-*Description* `Add toggle in "fill" menu to enable GLesmos`
+**Description** `Add toggle in "fill" menu to enable GLesmos`
 
-*Find* => `element`
+**Find** => `element`
 ```js
 createElement(
   'div',
@@ -27,7 +27,7 @@ createElement(
 )
 ```
 
-*Find* inside `element`
+**Find** inside `element`
 ```js
 createElement(
   'div',
@@ -36,9 +36,9 @@ createElement(
 )
 ```
 
-*Find_surrounding_template* `element` => `template`
+**Find_surrounding_template** `element` => `template`
 
-*Find* inside `template`
+**Find** inside `template`
 ```js
 createElement($ToggleView, {
   ariaLabel: () => this.controller.s("graphing-calculator-narration-fill-visible")
@@ -46,7 +46,7 @@ createElement($ToggleView, {
 
 Just add one more child.
 
-*Replace* `__rest__` with
+**Replace** `__rest__` with
 ```js
 __rest__,
 $DCGView.createElement(
@@ -71,16 +71,16 @@ $DCGView.createElement(
 
 Warning: this is duplicated above ("Add a fill menu option...").
 
-*Description* `Add toggle in "lines" menu to enable GLesmos`
+**Description** `Add toggle in "lines" menu to enable GLesmos`
 
-*Find* => `key`
+**Find** => `key`
 ```js
 { class: $DCGView.const('dcg-iconed-mathquill-row dcg-line-opacity-row') }
 ```
 
-*Find_surrounding_template* `key` => `template`
+**Find_surrounding_template** `key` => `template`
 
-*Find* inside `template`
+**Find** inside `template`
 ```js
 createElement(
   'div',
@@ -89,7 +89,7 @@ createElement(
 )
 ```
 
-*Find* inside `template`
+**Find** inside `template`
 ```js
 createElement($ToggleView, {
   ariaLabel: () => this.controller.s("graphing-calculator-narration-lines-visible")
@@ -97,7 +97,7 @@ createElement($ToggleView, {
 
 Just add one more child.
 
-*Replace* `__rest__` with
+**Replace** `__rest__` with
 ```js
 __rest__,
 $DCGView.createElement(
@@ -121,9 +121,9 @@ $DCGView.createElement(
 
 ## Add a lines menu option for confirming GLesmos lines
 
-*Description* `Add toggle to confirm GLesmos lines`
+**Description** `Add toggle to confirm GLesmos lines`
 
-*Find* => `options`
+**Find** => `options`
 ```js
 $DCGView.createElement("div",
   { class: $DCGView.const("dcg-options-flex-container") },
@@ -133,9 +133,9 @@ $DCGView.createElement("div",
       class: $DCGView.const("dcg-iconed-mathquill-row dcg-line-opacity-row")
 ```
 
-*Find_surrounding_template* `options` => `template`
+**Find_surrounding_template** `options` => `template`
 
-*Find* inside `template`
+**Find** inside `template`
 ```js
 createElement($ToggleView, {
   ariaLabel: () => this.controller.s("graphing-calculator-narration-lines-visible")
@@ -143,7 +143,7 @@ createElement($ToggleView, {
 
 Prefix with a child
 
-*Replace* `options` with
+**Replace** `options` with
 ```js
 $DCGView.createElement(
   $DCGView.Components.If,
@@ -178,9 +178,9 @@ __options__
 
 ## Replace main renderer with glesmos rendering when necessary
 
-*Description* `Draw GLesmos code`
+**Description** `Draw GLesmos code`
 
-*Find*
+**Find**
 
 ```js
 drawSketchToCtx({
@@ -189,13 +189,13 @@ drawSketchToCtx({
 }) {__body__}
 ```
 
-*Find* inside `__body__` => `guard`
+**Find** inside `__body__` => `guard`
 
 ```js
 if (!$ee.branches || !$ee.branches.length) return;
 ```
 
-*Replace* `guard` with
+**Replace** `guard` with
 
 ```js
 __guard__
@@ -209,16 +209,16 @@ for (const branch of $sketch.branches) {
 
 ## Pass GLesmos flag to worker
 
-*Description* `Pass GLesmos flag to the web worker`
+**Description** `Pass GLesmos flag to the web worker`
 
-*Find*
+**Find**
 ```js
 addStatement($stmt) {
   __body__
 }
 ```
 
-*Replace* `body` with
+**Replace** `body` with
 ```js
 if ($stmt.type === "statement") {
   $stmt.glesmos = DSM.glesmos?.isGlesmosMode($stmt.id);
@@ -229,11 +229,11 @@ __body__
 
 ## Replace quadtree implicit tracing with glesmos compilation
 
-*Description* `Compile GLesmos code instead of running implicit plotter`
+**Description** `Compile GLesmos code instead of running implicit plotter`
 
-*worker_only*
+**worker_only**
 
-*Find* 
+**Find** 
 ```js
 ._graph = $_graphFunc;
 function $_graphFunc(____) {
@@ -243,7 +243,7 @@ function $_graphFunc(____) {
 
 The code loops over the different IR objects `$ir`.
 
-*Find* inside `graph`
+**Find** inside `graph`
 ```js
 .wrap($).eachElement(($ir, $) => {
   __body__
@@ -252,14 +252,14 @@ The code loops over the different IR objects `$ir`.
 
 The `styles` object provides `styles.fillOpacity` and `styles.color`.
 
-*Find* inside `body`
+**Find** inside `body`
 ```js
 $styles.fillOpacity =
 ```
 
 This is just for finding the `$graphs` list.
 
-*Find* inside `body`
+**Find** inside `body`
 ```js
 if ($W !== void 0 && $X !== void 0 && isFinite($W) && isFinite($X)) {
   let $ie = $a(____);
@@ -267,12 +267,12 @@ if ($W !== void 0 && $X !== void 0 && isFinite($W) && isFinite($X)) {
 }
 ```
 
-*Find* inside `body` => `if2d`
+**Find** inside `body` => `if2d`
 ```js
 if (!$is3d($T.graphMode) || $) {
 ```
 
-*Replace* `if2d` with
+**Replace** `if2d` with
 ```js
 if (this.userData.glesmos && self.dsm_compileGLesmos) {
   const lines =

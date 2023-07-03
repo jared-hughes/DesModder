@@ -1,17 +1,17 @@
 # Debug Mode Replacements
 
-*plugin* `debug-mode`
+**plugin** `debug-mode`
 
 ## Replace expression index with expression id.
 
-*Description* `Show expression ID instead of index`
+**Description** `Show expression ID instead of index`
 
-*Find* => `from`
+**Find** => `from`
 ```js
 $o.displayIndex=$r
 ```
 
-*Replace* `from` with
+**Replace** `from` with
 ```js
 $o.displayIndex = DSM.debugMode
   ? $o.id.length <= 6
@@ -22,14 +22,14 @@ $o.displayIndex = DSM.debugMode
 
 ## Replace blank expression index with expression id.
 
-*Description* `Hide blank expression index`
+**Description** `Hide blank expression index`
 
-*Find* => `from`
+**Find** => `from`
 ```js
 $e.nextDisplayIndex=$r
 ```
 
-*Replace* `from` with
+**Replace** `from` with
 ```js
 $e.nextDisplayIndex = DSM.debugMode ? "" : $r
 ```

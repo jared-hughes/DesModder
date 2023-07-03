@@ -1,29 +1,29 @@
 # Metadata Replacements
 
-*plugin* `manage-metadata`
+**plugin** `manage-metadata`
 
 Replacements that apply to more than one plugin.
 
 ## Duplicate metadata when an expression is duplicated
 
-*Description* `Duplicate metadata (e.g. GLesmos enabled, or pinned/unpinned) when an expression is duplicated`
+**Description** `Duplicate metadata (e.g. GLesmos enabled, or pinned/unpinned) when an expression is duplicated`
 
-*Find*
+**Find**
 ```js
 copyExpressionToIndex(____) { __body__ }
 ```
 
-*Find* inside `body`:
+**Find** inside `body`:
 ```js
 let $to = this.createItemModel(
 ```
 
-*Find*
+**Find**
 ```js
 case "expression": $from =
 ```
 
-*Replace* `body` with
+**Replace** `body` with
 ```js
 __body__;
 DSM.metadata?.duplicateMetadata($to.id, $from.id)
@@ -33,16 +33,16 @@ DSM.metadata?.duplicateMetadata($to.id, $from.id)
 
 Allows correct checking of the .glesmos metadata; otherwise, we run into `Calc.observeEvent("change")` triggering after addStatement sends the data to the worker. We need the correct `.glesmos` property before addStatement.
 
-*Description* `Check GLesmos metatata before calculating a statement`
+**Description** `Check GLesmos metatata before calculating a statement`
 
-*plugin* `GLesmos`
+**plugin** `GLesmos`
 
-*Find*
+**Find**
 ```js
 requestParseForAllItems() {__body__}
 ```
 
-*Replace* `body` with
+**Replace** `body` with
 ```js
 DSM.metadata?.checkForMetadataChange();
 __body__

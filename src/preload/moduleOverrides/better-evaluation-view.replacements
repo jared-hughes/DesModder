@@ -1,21 +1,21 @@
 # Better Evaluation View Replacements
 
-*plugin* `better-evaluation-view`
+**plugin** `better-evaluation-view`
 
 ## Override evaluation view
 
-*Description* `Override the evaluation view`
+**Description** `Override the evaluation view`
 
 Bindings
 
-*Find*
+**Find**
 ```js
 fraction: () => $Dcgview.createElement($StaticMathquillViewDefault, {latex
 ```
 
 Show exposed undefined values
 
-*Find* => `undefined`
+**Find** => `undefined`
 ```js
 undefined: () =>  $.createElement(
     'span',
@@ -24,7 +24,7 @@ undefined: () =>  $.createElement(
   )
 ```
 
-*Replace* `undefined` with
+**Replace** `undefined` with
 ```js
 undefined: () => $Dcgview.Components.IfElse(
     () => DSM.betterEvaluationView,
@@ -47,13 +47,13 @@ undefined: () => $Dcgview.Components.IfElse(
 
 Show list elements
 
-*Find* => `list`
+**Find** => `list`
 ```js
 ()=>this.getEvaluationType(), {
 list: () => $.createElement(__oldList__)
 ```
 
-*Replace* `list` with
+**Replace** `list` with
 ```js
 ()=>this.getEvaluationType(), {
 list: () => $Dcgview.Components.IfElse(
@@ -83,12 +83,12 @@ list: () => $Dcgview.Components.IfElse(
 ```
 
 Show color values
-*Find* => `color`
+**Find** => `color`
 ```js
 rgbcolor: () => $.createElement(__swatch__)
 ```
 
-*Replace* `color` with
+**Replace** `color` with
 ```js
 rgbcolor: () => $Dcgview.createElement(
     "div",
@@ -139,25 +139,25 @@ rgbcolor: () => $Dcgview.createElement(
 
 ## Return more info from numericLabels
 
-*Description* `Distinguish 0 vs -0 and NaN vs -∞ vs +∞`
+**Description** `Distinguish 0 vs -0 and NaN vs -∞ vs +∞`
 
-*worker_only*
+**worker_only**
 
 Add a value field to "undefined" labels
 
-*Find* => `undefined`
+**Find** => `undefined`
 ```js
 if ($options = $options || {}, isNaN($val) || !isFinite($val)) return { type: "undefined" }
 ```
 
-*Replace* `undefined` with
+**Replace** `undefined` with
 ```js
 if ($options = $options || {}, isNaN($val) || !isFinite($val)) return { type: "undefined", value: isNaN($val) ? "\\mathrm{NaN}" : $val === Infinity ? "\\infty" : $val === -Infinity ? "-\\infty" : "undefined"}
 ```
 
 Distinguish between 0 and -0
 
-*Find* => `zero`
+**Find** => `zero`
 ```js
 if ($ === 0 || $.zeroCutoff && Math.abs($) < $.zeroCutoff)
   return {
@@ -166,7 +166,7 @@ if ($ === 0 || $.zeroCutoff && Math.abs($) < $.zeroCutoff)
   }
 ```
 
-*Replace* `zero` with
+**Replace** `zero` with
 ```js
 if ($val === 0) {
   if (!DSM.betterEvaluationView || Object.is($val, 0)) {
@@ -197,14 +197,14 @@ if ($val === 0) {
 
 ## Distinguish NaN, +∞, -∞ in lists.
 
-*Description* `Distinguish NaN, +∞, -∞ in lists.`
+**Description** `Distinguish NaN, +∞, -∞ in lists.`
 
-I'm really confused. The match doesn't work without *worker_only*, but the code
+I'm really confused. The match doesn't work without **worker_only**, but the code
 runs on the main page, not the worker.
 
-*worker_only*
+**worker_only**
 
-*Find* => `truncatedLatexLabelDef`
+**Find** => `truncatedLatexLabelDef`
 ```js
 function $truncatedLatexLabel($e, $t) {
     let $r = $numericLabel($e, $t);
@@ -217,7 +217,7 @@ function $truncatedLatexLabel($e, $t) {
         return $r.mantissa + "\\times10^{" + $r.exponent + "}";
 ```
 
-*Replace* `truncatedLatexLabelDef` with
+**Replace** `truncatedLatexLabelDef` with
 ```js
 function $truncatedLatexLabel($e, $t) {
     let $r = $numericLabel($e, $t);

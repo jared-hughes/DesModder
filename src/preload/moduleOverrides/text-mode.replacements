@@ -1,18 +1,18 @@
 # Replacements for Text Mode
 
-*plugin* `text-mode`
+**plugin** `text-mode`
 
 ## Hide the keypad when in text mode
 
-*Description* `Hide the on-screen keypad in Text Mode`
+**Description** `Hide the on-screen keypad in Text Mode`
 
-*Find* => `from`
+**Find** => `from`
 
 ```js
 isShowKeypadButtonVisible () { return __curr__ }
 ```
 
-*Replace* `from` with
+**Replace** `from` with
 
 ```js
 isShowKeypadButtonVisible () {
@@ -22,9 +22,9 @@ isShowKeypadButtonVisible () {
 
 ## Add text mode toggle button
 
-*Description* `Add toggle button to enable Text Mode`
+**Description** `Add toggle button to enable Text Mode`
 
-*Find* => `element`
+**Find** => `element`
 ```js
 .createElement(
   'div',
@@ -33,16 +33,16 @@ isShowKeypadButtonVisible () {
 )
 ```
 
-*Find_surrounding_template* `element` => `template`
+**Find_surrounding_template** `element` => `template`
 
-*Find* inside `template`
+**Find** inside `template`
 
 ```js
 .createElement($Tooltip, {
   tooltip: () => this.controller.s("graphing-calculator-label-edit-list-tooltip")
 ```
 
-*Replace* `__children__` with
+**Replace** `__children__` with
 ```js
 $DCGView.createElement(
   $DCGView.Components.If,
@@ -82,15 +82,15 @@ __children__
 
 ## Add Text Mode class for styling
 
-*Description* `Style expressions list differently in Text Mode`
+**Description** `Style expressions list differently in Text Mode`
 
-*Find* => `from`
+**Find** => `from`
 
 ```js
 "dcg-exppanel-container": !0
 ```
 
-*Replace* `from` with
+**Replace** `from` with
 
 ```js
 "dcg-exppanel-container": !0,
@@ -99,9 +99,9 @@ __children__
 
 ## Extract ExpressionView class
 
-*Description* `Show style circles and expression footers for Text Mode statements`
+**Description** `Show style circles and expression footers for Text Mode statements`
 
-*Find*
+**Find**
 
 ```js
 $ExpressionView = class extends $ {
@@ -111,16 +111,16 @@ $ExpressionView = class extends $ {
   }
 ```
 
-*Replace* `ExpressionView` with
+**Replace** `ExpressionView` with
 ```js
 $ExpressionView = (window.DesModderFragile ??= {}).ExpressionView
 ```
 
 ## Extract ImageIconView class
 
-*Description* `Show style circles for Text Mode images`
+**Description** `Show style circles for Text Mode images`
 
-*Find*
+**Find**
 
 ```js
 $ImageIconView = class extends $.Class {
@@ -131,7 +131,7 @@ $ImageIconView = class extends $.Class {
       }
 ```
 
-*Replace* `ImageIconView` with
+**Replace** `ImageIconView` with
 ```js
 $ImageIconView = (window.DesModderFragile ??= {}).ImageIconView
 ```

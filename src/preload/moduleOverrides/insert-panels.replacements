@@ -1,13 +1,13 @@
 # Insert Panels replacements
 
-*plugin* `pin-expressions` `text-mode`
+**plugin** `pin-expressions` `text-mode`
 
 
 ## Insert panels on the expressions list
 
-*Description* `Insert panels to show Text Mode and pinned expressions`
+**Description** `Insert panels to show Text Mode and pinned expressions`
 
-*Find* => `element`
+**Find** => `element`
 ```js
 $DCGView.createElement(
   "div",
@@ -21,7 +21,7 @@ $DCGView.createElement(
 )
 ```
 
-*Replace* `children` with
+**Replace** `children` with
 ```js
 __children__,
 // pinned expressions

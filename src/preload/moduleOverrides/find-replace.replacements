@@ -1,18 +1,18 @@
 # Replacements for Find-Replace
 
-*plugin* `find-and-replace`
+**plugin** `find-and-replace`
 
 ## Allow find-replace to appear, even if the expression list is not focused
 
-*Description* `Allow find-replace to appear, even if the expression list is not focused`
+**Description** `Allow find-replace to appear, even if the expression list is not focused`
 
-*Find* => `from`
+**Find** => `from`
 
 ```js
 this.controller.isExpressionListFocused()
 ```
 
-*Replace* `from` with
+**Replace** `from` with
 
 ```js
 !DSM.textMode?.inTextMode

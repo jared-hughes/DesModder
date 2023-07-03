@@ -1,12 +1,12 @@
 # Show-Tips
 
-*plugin* `show-tips`
+**plugin** `show-tips`
 
 ## Replace branding to show tips
 
-*Description* `Replace "powered by desmos" with tips`
+**Description** `Replace "powered by desmos" with tips`
 
-*Find* => `from`
+**Find** => `from`
 ```js
 $DCGView.createElement(
   "div",
@@ -18,7 +18,7 @@ $DCGView.createElement(
 )
 ```
 
-*Replace* `from` with
+**Replace** `from` with
 ```js
 $DCGView.createElement(
   "div",

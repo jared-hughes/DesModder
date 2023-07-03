@@ -1,24 +1,24 @@
 # Replacements for Shift-Enter Newline
 
-*plugin* `shift-enter-newline`
+**plugin** `shift-enter-newline`
 
 ## Change shift-enter to insert a newline in notes
 
-*Description* `Change shift-enter to insert a newline in notes`
+**Description** `Change shift-enter to insert a newline in notes`
 
-*Find*
+**Find**
 
 ```js
 onKeydownEvent($) {__onKeydownEvent__}
 ```
 
-*Find* inside `onKeydownEvent` => `from`
+**Find** inside `onKeydownEvent` => `from`
 ```js
 $n === $enterKey && !$e.metaKey
   ? ($e.preventDefault(), this.props.onSpecialKey("Enter"))
 ```
 
-*Replace* `from` with
+**Replace** `from` with
 ```js
 $n === $enterKey && !$e.metaKey
   && !($e.shiftKey && DSM.shiftEnterNewline)

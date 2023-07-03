@@ -4,44 +4,44 @@
 
 Calling a command looks like:
 
-- (general form) `` *command* `arg1` `arg2` => `return_value` ``
-- (no args) `` *command* => `return_value` ``
-- (return value not captured) `` *command* `arg1` `arg2` ``
+- (general form) `` **command** `arg1` `arg2` => `return_value` ``
+- (no args) `` **command** => `return_value` ``
+- (return value not captured) `` **command** `arg1` `arg2` ``
 
-Any text outside of `` `backticks` `` or `*asterisks*` are ignored, except the return separator `=>`.
+Any text outside of `` `backticks` `` or `**asterisks**` are ignored, except the return separator `=>`.
 
-Arguments are passed by value. There is only one data type, a range in the code. For example, `` *Find* `template` `` passes the range value of `template` to the `*Find*` command. So `*Find*` might receive a range like `{start: 400, length: 200}` as argument.
+Arguments are passed by value. There is only one data type, a range in the code. For example, `` **Find** `template` `` passes the range value of `template` to the `**Find**` command. So `**Find**` might receive a range like `{start: 400, length: 200}` as argument.
 
 Some commands require a pattern as an extra argument (a second data type? ok I lied). A pattern is passed as a code block like
 
 <!-- prettier-ignore -->
 ````md
-*Find*
+**Find**
 
 ```js
 .getSections = function () {__body__}
 ```
 ````
 
-Then the pattern argument to `*Find*` is the sequence of tokens `[".", "getSections", "=", "function", "(", ")", "{", "__body__", "}"]`, (and some whitespace). You generally don't have to think about tokens when writing replacements. Just treat it as code that is looked for, but quirks end up being ignored, such as whitespace and double-quoted vs single-quoted strings.
+Then the pattern argument to `**Find**` is the sequence of tokens `[".", "getSections", "=", "function", "(", ")", "{", "__body__", "}"]`, (and some whitespace). You generally don't have to think about tokens when writing replacements. Just treat it as code that is looked for, but quirks end up being ignored, such as whitespace and double-quoted vs single-quoted strings.
 
 ## Builtin commands
 
 There are five builtin commands:
 
-### Command `*worker_only*`
+### Command `**worker_only**`
 
 Specifies the replacement to occur only in the worker, rather than only in the main frame.
 
-### Command `*Find*`
+### Command `**Find**`
 
-`*Find*` takes zero or one range arguments, and one pattern argument. The command searches for substrings of the code matching that pattern. If one range argument is passed, the search is narrowed to that range.
+`**Find**` takes zero or one range arguments, and one pattern argument. The command searches for substrings of the code matching that pattern. If one range argument is passed, the search is narrowed to that range.
 
 #### Examples
 
 <!-- prettier-ignore -->
 ````md
-*Find* => `call`
+**Find** => `call`
 
 ```js
 this.controller.isExpressionListFocused()
@@ -52,7 +52,7 @@ Finds the code `this.controller.isExpressionListFocused()`, and lets the variabl
 
 <!-- prettier-ignore -->
 ````md
-*Find* inside `narrow` => `call`
+**Find** inside `narrow` => `call`
 
 ```js
 this.controller.isExpressionListFocused()
@@ -78,7 +78,7 @@ The patterns bind names (`id` and `range`) in these bulleted examples. They get 
 
 <!-- prettier-ignore -->
 ````md
-*Find* => `from`
+**Find** => `from`
 
 ```js
 if ($List.getMissingVariablesForItem($l).length && $e.areSlidersEnabled())
@@ -90,7 +90,7 @@ Finds a chunk of code, but allows for the variable names changing on the next mi
 
 <!-- prettier-ignore -->
 ````md
-*Find* inside `template`
+**Find** inside `template`
 
 ```js
 return $DCGView.createElement(
@@ -103,26 +103,26 @@ return $DCGView.createElement(
 
 Note that the return value is not specified (there is no `` => `name`  ``). The point of this code block is to find what the `__rest__` pattern matches.
 
-### Command `*Find_surrounding_template*`
+### Command `**Find_surrounding_template**`
 
-`*Find_surrounding_template*` takes one range argument. The command searches for a `.template=function(){ ____ }` containing the range argument.
+`**Find_surrounding_template**` takes one range argument. The command searches for a `.template=function(){ ____ }` containing the range argument.
 
-### Command `*Replace*`
+### Command `**Replace**`
 
-`*Replace*` takes one range arguments, and one pattern argument. The command replaces the range with the pattern. This must be the last command in a Module block, and it cannot occur elsewhere.
+`**Replace**` takes one range arguments, and one pattern argument. The command replaces the range with the pattern. This must be the last command in a Module block, and it cannot occur elsewhere.
 
-Special patterns from `*Find*` can also be used in `*Replace*`, where they do a direct substitution of the token lists.
+Special patterns from `**Find**` can also be used in `**Replace**`, where they do a direct substitution of the token lists.
 
 #### Examples
 
 <!-- prettier-ignore -->
 ````md
-*Find* => `from`
+**Find** => `from`
 ```js
 this.controller.isExpressionListFocused()
 ```
 
-*Replace* `from` with
+**Replace** `from` with
 ```js
 !DSM.textMode?.inTextMode
 ```
@@ -132,12 +132,12 @@ Simple direct text replacement.
 
 <!-- prettier-ignore -->
 ````md
-*Find* => `from`
+**Find** => `from`
 ```js
 var $r = $e.hasClass('dcg-all')
 ```
 
-*Replace* `from` with
+**Replace** `from` with
 ```js
 if ($e.hasClass("dsm-hide-errors")) {
   DSM.hideErrors?.hideError(this.model.id)
@@ -147,27 +147,27 @@ var $r = $e.hasClass('dcg-all')
 ```
 ````
 
-Demonstrates the variables carrying over: the value of `e` is used in the `*Replace*` after being found in the `*Find*`.
+Demonstrates the variables carrying over: the value of `e` is used in the `**Replace**` after being found in the `**Find**`.
 
-### Command `*Plugin*`
+### Command `**Plugin**`
 
-`*Plugin*` takes one or more arguments which are the names of patterns. They only matter for error handling and force-disabled plugins.
+`**Plugin**` takes one or more arguments which are the names of patterns. They only matter for error handling and force-disabled plugins.
 
-Later `*plugin*` calls completely replace (shadow) the plugins of the parent heading.
+Later `**plugin**` calls completely replace (shadow) the plugins of the parent heading.
 
 ## Blocks
 
 A block is the basic unit of a replacement. A block starts at a block-starter command. The block-starter command must be immediately after a heading. The block continues until the next heading of equal or shallower depth (fewer `#`s).
 
-The one block-starter command is `*Description*`
+The one block-starter command is `**Description**`
 
-### `*Description*`
+### `**Description**`
 
-`*Description*` takes exactly one argument, a short user-readable description of what it does (in English; translation would be too much work for a string that should never appear). It will only appear in the Loading Errors Manager in a context that also shows the relevant plugin (if any).
+`**Description**` takes exactly one argument, a short user-readable description of what it does (in English; translation would be too much work for a string that should never appear). It will only appear in the Loading Errors Manager in a context that also shows the relevant plugin (if any).
 
 The description should complete the sentence "This plugin will \_\_\_\_." and the first letter should be capitalized.
 
 <!-- prettier-ignore -->
 ```md
-*Description* `Change the style of pillbox buttons (buttons over the graph paper)`
+**Description** `Change the style of pillbox buttons (buttons over the graph paper)`
 ```

@@ -1,18 +1,18 @@
 # Replacements for Hide Errors
 
-*plugin* `hide-errors`
+**plugin** `hide-errors`
 
 ## Prevent enter/shift-enter from creating sliders
 
-*Description* `Prevent enter and shift-enter from creating sliders`
+**Description** `Prevent enter and shift-enter from creating sliders`
 
-*Find* => `from`
+**Find** => `from`
 ```js
   $getMissingVariablesForItem($l).length && $e.areSlidersEnabled())
   return $e.createSlidersForItem(
 ```
 
-*Replace* `from` with
+**Replace** `from` with
 ```js
   $getMissingVariablesForItem($l).length &&
   $e.areSlidersEnabled() &&
@@ -23,11 +23,11 @@
 
 ## Wrap error triangle with div for onTap and opacity control
 
-*Description* `Wrap error triangle to control its style`
+**Description** `Wrap error triangle to control its style`
 
 Wrap the error message tooltipped-error with a div, using `onTap` to trigger hiding/showing the error (but only when shift is held).
 
-*Find* => `from`
+**Find** => `from`
 ```js
 error: () => $DCGView.createElement($TooltippedError, {
     error: $e.bindFn($e.getErrorMsg),
@@ -35,14 +35,14 @@ error: () => $DCGView.createElement($TooltippedError, {
   })
 ```
 
-*Find_surrounding_template* `from` => `template`
+**Find_surrounding_template** `from` => `template`
 
-*Find* inside `template`
+**Find** inside `template`
 ```js
 $this.bindFn($this.getIconMode)
 ```
 
-*Replace* `from` with
+**Replace** `from` with
 ```js
 error: () => $DCGView.createElement(
   "div",
@@ -66,14 +66,14 @@ error: () => $DCGView.createElement(
 
 ## Trigger DesModder hide instead of `create-sliders-for-item` on tap
 
-*Description* `Run correct code when "hide" button is clicked`
+**Description** `Run correct code when "hide" button is clicked`
 
-*Find* => `from`
+**Find** => `from`
 ```js
 let $r = $e.hasClass('dcg-all')
 ```
 
-*Replace* `from` with
+**Replace** `from` with
 ```js
 if ($e.hasClass("dsm-hide-errors")) {
   DSM.hideErrors?.hideError(this.model.id)
@@ -84,9 +84,9 @@ __from__
 
 ## Add a "hide" button to the slider prompts
 
-*Description* `Add a "hide" button to the slider prompts`
+**Description** `Add a "hide" button to the slider prompts`
 
-*Find* => `element`
+**Find** => `element`
 ```js
 createElement(
   'span',
@@ -97,7 +97,7 @@ createElement(
 
 Add one more child for the hide button
 
-*Replace* `children` with
+**Replace** `children` with
 ```js
 __children__,
 $DCGView.createElement(
@@ -128,32 +128,32 @@ $DCGView.createElement(
 
 ## Disable slider creation prompt if error is hidden
 
-*Description* `Disable slider prompts if error is hidden`
+**Description** `Disable slider prompts if error is hidden`
 
-*Find*
+**Find**
 ```js
 shouldShowSliderPrompt() {
   return __ret__
 }
 ```
 
-*Replace* `__ret__` with
+**Replace** `__ret__` with
 ```js
 (__ret__) && !DSM.hideErrors?.isErrorHidden(this.model?.id)
 ```
 
 ## Allow shift-enter to create a new expression and hide errors on the old expression
 
-*Description* `Hide errors on shift-enter`
+**Description** `Hide errors on shift-enter`
 
-*Find* => `from`
+**Find** => `from`
 ```js
 if ($e === "Enter")
   return $t && ($t.preventDefault(), $t.stopPropagation()),
     this.controller.dispatch({ type: "on-special-key-pressed", key: "Enter" })
 ```
 
-*Replace* `from` with
+**Replace** `from` with
 ```js
 __from__
 else if ("Shift-Enter" === $e) {
