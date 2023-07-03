@@ -7,11 +7,13 @@
 **Description** `Show expression ID instead of index`
 
 **Find** => `from`
+
 ```js
-$o.displayIndex=$r
+$o.displayIndex = $r
 ```
 
 **Replace** `from` with
+
 ```js
 $o.displayIndex = DSM.debugMode
   ? $o.id.length <= 6
@@ -25,11 +27,13 @@ $o.displayIndex = DSM.debugMode
 **Description** `Hide blank expression index`
 
 **Find** => `from`
+
 ```js
-$e.nextDisplayIndex=$r
+$e.nextDisplayIndex = $r
 ```
 
 **Replace** `from` with
+
 ```js
 $e.nextDisplayIndex = DSM.debugMode ? "" : $r
 ```

@@ -7,6 +7,7 @@
 **Description** `Allow right-click to open long-hold menus`
 
 **Find**
+
 ```js
 $DCGView.addCustomAttribute("onLongHold", $callback => ({
   bindings: {
@@ -14,27 +15,28 @@ $DCGView.addCustomAttribute("onLongHold", $callback => ({
       __body__
     }
   }
-}));
+}))
 ```
 
 **Replace** `body` with
+
 ```js
 __body__
 // allow-ids: of
 $el.addEventListener("mousedown", event => {
-  if (event.button !== 2) return;
+  if (event.button !== 2) return
   const rightClickTray = DSM.rightClickTray
-  if (!rightClickTray) return;
-  event.handle = () => event.stopPropagation();
-  rightClickTray.stopNextContextMenu = true;
-  $callback(event);
+  if (!rightClickTray) return
+  event.handle = () => event.stopPropagation()
+  rightClickTray.stopNextContextMenu = true
+  $callback(event)
 })
 $el.addEventListener("contextmenu", event => {
   const rightClickTray = DSM.rightClickTray
-  if (!rightClickTray) return;
+  if (!rightClickTray) return
   if (rightClickTray.stopNextContextMenu) {
-    event.preventDefault();
-    rightClickTray.stopNextContextMenu = false;
+    event.preventDefault()
+    rightClickTray.stopNextContextMenu = false
   }
 })
 ```

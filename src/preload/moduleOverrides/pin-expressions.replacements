@@ -9,25 +9,29 @@
 Completely rewrites function `getDisplayState(e)` to also set an item as hidden if it is pinned
 
 **Find** => `from`
+
 ```js
 $e.isHiddenFromUI || $e.filteredBySearch
 ```
 
 **Replace** `from` with
+
 ```js
-$e.isHiddenFromUI || $e.filteredBySearch || DSM.pinExpressions?.isExpressionPinned($e.id)
+$e.isHiddenFromUI ||
+  $e.filteredBySearch ||
+  DSM.pinExpressions?.isExpressionPinned($e.id)
 ```
 
 Replacement appears in
 
 ```js
 exports.getDisplayState = function ($e) {
-    return $e.isHiddenFromUI || $e.filteredBySearch
-      ? 'none'
-      : $e.renderShell
-      ? 'shell'
-      : 'render'
-  }
+  return $e.isHiddenFromUI || $e.filteredBySearch
+    ? "none"
+    : $e.renderShell
+    ? "shell"
+    : "render"
+}
 ```
 
 ## Allow deleting pinned expressions
@@ -37,17 +41,20 @@ Since pinned expressions have `isDragDrop=true`, they have `model.dcgView = unde
 **Description** `Allow deleting pinned expressions`
 
 **Find**
+
 ```js
 _deleteItemAndAnimateOut ($e, $t) {__body__}
 ```
 
 **Find** inside `body`
+
 ```js
 $s = this.getItemSelectorById($)
 ```
 
 **Replace** `body` with
+
 ```js
-__body__;
-$s || this._finishDeletingItemAfterAnimation($e, $t);
+__body__
+$s || this._finishDeletingItemAfterAnimation($e, $t)
 ```

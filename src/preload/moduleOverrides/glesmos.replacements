@@ -10,16 +10,15 @@ adding an extra section to the menu view.
 **Description** `Add toggle in "fill" menu to enable GLesmos`
 
 **Find** => `element`
+
 ```js
 createElement(
-  'div',
-  { class: $DCGView.const('dcg-options-menu-content') },
+  "div",
+  { class: $DCGView.const("dcg-options-menu-content") },
   $DCGView.createElement(
-    'div',
+    "div",
     {
-      class: $DCGView.const(
-        'dcg-iconed-mathquill-row dcg-fill-opacity-row'
-      )
+      class: $DCGView.const("dcg-iconed-mathquill-row dcg-fill-opacity-row")
     },
     __rest0__
   ),
@@ -28,17 +27,15 @@ createElement(
 ```
 
 **Find** inside `element`
+
 ```js
-createElement(
-  'div',
-  { class: $.const('dcg-options-menu-content') },
-  __rest__
-)
+createElement("div", { class: $.const("dcg-options-menu-content") }, __rest__)
 ```
 
 **Find_surrounding_template** `element` => `template`
 
 **Find** inside `template`
+
 ```js
 createElement($ToggleView, {
   ariaLabel: () => this.controller.s("graphing-calculator-narration-fill-visible")
@@ -47,24 +44,30 @@ createElement($ToggleView, {
 Just add one more child.
 
 **Replace** `__rest__` with
+
 ```js
 __rest__,
-$DCGView.createElement(
-  $DCGView.Components.If,
-  {
-    predicate: () => DSM.glesmos?.canBeGLesmos(this.id),
-  },
-  () => $DCGView.createElement(
-    "div",
-    { class: $DCGView.const("dcg-options-menu-section-title dsm-gl-fill-title") },
-    () => DesModder.format("GLesmos-label-toggle-glesmos"),
-    $DCGView.createElement($ToggleView, {
-      ariaLabel: () => DesModder.format("GLesmos-label-toggle-glesmos"),
-      toggled: () => DSM.glesmos?.isGlesmosMode?.(this.id),
-      onChange: () => DSM.glesmos?.toggleGlesmos?.(this.id),
-    })
+  $DCGView.createElement(
+    $DCGView.Components.If,
+    {
+      predicate: () => DSM.glesmos?.canBeGLesmos(this.id)
+    },
+    () =>
+      $DCGView.createElement(
+        "div",
+        {
+          class: $DCGView.const(
+            "dcg-options-menu-section-title dsm-gl-fill-title"
+          )
+        },
+        () => DesModder.format("GLesmos-label-toggle-glesmos"),
+        $DCGView.createElement($ToggleView, {
+          ariaLabel: () => DesModder.format("GLesmos-label-toggle-glesmos"),
+          toggled: () => DSM.glesmos?.isGlesmosMode?.(this.id),
+          onChange: () => DSM.glesmos?.toggleGlesmos?.(this.id)
+        })
+      )
   )
-)
 ```
 
 ## Add a lines menu option for switching an expression to glesmos rendering mode
@@ -74,6 +77,7 @@ Warning: this is duplicated above ("Add a fill menu option...").
 **Description** `Add toggle in "lines" menu to enable GLesmos`
 
 **Find** => `key`
+
 ```js
 { class: $DCGView.const('dcg-iconed-mathquill-row dcg-line-opacity-row') }
 ```
@@ -81,15 +85,13 @@ Warning: this is duplicated above ("Add a fill menu option...").
 **Find_surrounding_template** `key` => `template`
 
 **Find** inside `template`
+
 ```js
-createElement(
-  'div',
-  { class: $.const('dcg-options-menu-content') },
-  __rest__
-)
+createElement("div", { class: $.const("dcg-options-menu-content") }, __rest__)
 ```
 
 **Find** inside `template`
+
 ```js
 createElement($ToggleView, {
   ariaLabel: () => this.controller.s("graphing-calculator-narration-lines-visible")
@@ -98,25 +100,32 @@ createElement($ToggleView, {
 Just add one more child.
 
 **Replace** `__rest__` with
+
 ```js
 __rest__,
-$DCGView.createElement(
-  $DCGView.Components.If,
-  {
-    predicate: () => DSM.glesmos?.canBeGLesmos(this.id) &&
-      !DSM.glesmos?.isInequality(this.id)
-  },
-  () => $DCGView.createElement(
-    "div",
-    { class: $DCGView.const("dcg-options-menu-section-title dsm-gl-fill-title") },
-    () => DesModder.format("GLesmos-label-toggle-glesmos"),
-    $DCGView.createElement($ToggleView, {
-      ariaLabel: () => DesModder.format("GLesmos-label-toggle-glesmos"),
-      toggled: () => DSM.glesmos?.isGlesmosMode?.(this.id),
-      onChange: () => DSM.glesmos?.toggleGlesmos?.(this.id),
-    })
+  $DCGView.createElement(
+    $DCGView.Components.If,
+    {
+      predicate: () =>
+        DSM.glesmos?.canBeGLesmos(this.id) &&
+        !DSM.glesmos?.isInequality(this.id)
+    },
+    () =>
+      $DCGView.createElement(
+        "div",
+        {
+          class: $DCGView.const(
+            "dcg-options-menu-section-title dsm-gl-fill-title"
+          )
+        },
+        () => DesModder.format("GLesmos-label-toggle-glesmos"),
+        $DCGView.createElement($ToggleView, {
+          ariaLabel: () => DesModder.format("GLesmos-label-toggle-glesmos"),
+          toggled: () => DSM.glesmos?.isGlesmosMode?.(this.id),
+          onChange: () => DSM.glesmos?.toggleGlesmos?.(this.id)
+        })
+      )
   )
-)
 ```
 
 ## Add a lines menu option for confirming GLesmos lines
@@ -124,6 +133,7 @@ $DCGView.createElement(
 **Description** `Add toggle to confirm GLesmos lines`
 
 **Find** => `options`
+
 ```js
 $DCGView.createElement("div",
   { class: $DCGView.const("dcg-options-flex-container") },
@@ -136,6 +146,7 @@ $DCGView.createElement("div",
 **Find_surrounding_template** `options` => `template`
 
 **Find** inside `template`
+
 ```js
 createElement($ToggleView, {
   ariaLabel: () => this.controller.s("graphing-calculator-narration-lines-visible")
@@ -144,36 +155,43 @@ createElement($ToggleView, {
 Prefix with a child
 
 **Replace** `options` with
+
 ```js
 $DCGView.createElement(
   $DCGView.Components.If,
   {
     predicate: () =>
-      DSM.glesmos?.isGlesmosMode(this.id) &&
-      DSM.glesmos?.isInequality(this.id),
+      DSM.glesmos?.isGlesmosMode(this.id) && DSM.glesmos?.isInequality(this.id)
   },
-  () => $DCGView.createElement(
-    "div",
-    { class: $DCGView.const("dcg-options-menu-section-title dsm-gl-lines-confirm") },
-    () => DesModder.format("GLesmos-confirm-lines"),
-    $DCGView.createElement($ToggleView, {
-      ariaLabel: () => DesModder.format("GLesmos-confirm-lines"),
-      toggled: () => DSM.glesmos?.isGLesmosLinesConfirmed?.(this.id),
-      onChange: () => DSM.glesmos?.toggleGLesmosLinesConfirmed?.(this.id),
-    }),
+  () =>
     $DCGView.createElement(
-      $DCGView.Components.If,
+      "div",
       {
-        predicate: () => !DSM.glesmos?.isGLesmosLinesConfirmed?.(this.id)
+        class: $DCGView.const(
+          "dcg-options-menu-section-title dsm-gl-lines-confirm"
+        )
       },
-      () => $DCGView.createElement("div",
-        { class: $DCGView.const("dsm-gl-lines-confirm-body") },
-        () => DesModder.format("GLesmos-confirm-lines-body")
+      () => DesModder.format("GLesmos-confirm-lines"),
+      $DCGView.createElement($ToggleView, {
+        ariaLabel: () => DesModder.format("GLesmos-confirm-lines"),
+        toggled: () => DSM.glesmos?.isGLesmosLinesConfirmed?.(this.id),
+        onChange: () => DSM.glesmos?.toggleGLesmosLinesConfirmed?.(this.id)
+      }),
+      $DCGView.createElement(
+        $DCGView.Components.If,
+        {
+          predicate: () => !DSM.glesmos?.isGLesmosLinesConfirmed?.(this.id)
+        },
+        () =>
+          $DCGView.createElement(
+            "div",
+            { class: $DCGView.const("dsm-gl-lines-confirm-body") },
+            () => DesModder.format("GLesmos-confirm-lines-body")
+          )
       )
     )
-  )
 ),
-__options__
+  __options__
 ```
 
 ## Replace main renderer with glesmos rendering when necessary
@@ -202,7 +220,12 @@ __guard__
 // allow-ids: of
 for (const branch of $sketch.branches) {
   if (branch.graphMode === "GLesmos") {
-    DesModder.drawGLesmosSketchToCtx?.(branch.compiledGL, $ctx, $projection, $sketch.id);
+    DesModder.drawGLesmosSketchToCtx?.(
+      branch.compiledGL,
+      $ctx,
+      $projection,
+      $sketch.id
+    )
   }
 }
 ```
@@ -212,6 +235,7 @@ for (const branch of $sketch.branches) {
 **Description** `Pass GLesmos flag to the web worker`
 
 **Find**
+
 ```js
 addStatement($stmt) {
   __body__
@@ -219,10 +243,11 @@ addStatement($stmt) {
 ```
 
 **Replace** `body` with
+
 ```js
 if ($stmt.type === "statement") {
-  $stmt.glesmos = DSM.glesmos?.isGlesmosMode($stmt.id);
-  $stmt.glesmosLinesConfirmed = DSM.glesmos?.isGLesmosLinesConfirmed($stmt.id);
+  $stmt.glesmos = DSM.glesmos?.isGlesmosMode($stmt.id)
+  $stmt.glesmosLinesConfirmed = DSM.glesmos?.isGLesmosLinesConfirmed($stmt.id)
 }
 __body__
 ```
@@ -233,7 +258,8 @@ __body__
 
 **worker_only**
 
-**Find** 
+**Find**
+
 ```js
 ._graph = $_graphFunc;
 function $_graphFunc(____) {
@@ -244,6 +270,7 @@ function $_graphFunc(____) {
 The code loops over the different IR objects `$ir`.
 
 **Find** inside `graph`
+
 ```js
 .wrap($).eachElement(($ir, $) => {
   __body__
@@ -253,6 +280,7 @@ The code loops over the different IR objects `$ir`.
 The `styles` object provides `styles.fillOpacity` and `styles.color`.
 
 **Find** inside `body`
+
 ```js
 $styles.fillOpacity =
 ```
@@ -260,47 +288,56 @@ $styles.fillOpacity =
 This is just for finding the `$graphs` list.
 
 **Find** inside `body`
+
 ```js
 if ($W !== void 0 && $X !== void 0 && isFinite($W) && isFinite($X)) {
+  // prettier-ignore
   let $ie = $a(____);
   $graphs.push(____)
 }
 ```
 
 **Find** inside `body` => `if2d`
+
 ```js
 if (!$is3d($T.graphMode) || $) {
 ```
 
 **Replace** `if2d` with
+
 ```js
 if (this.userData.glesmos && self.dsm_compileGLesmos) {
   const lines =
     this.userData.lines !== false &&
-    (!this.isInequality() || this.userData.glesmosLinesConfirmed);
-  let derivativeX, derivativeY;
+    (!this.isInequality() || this.userData.glesmosLinesConfirmed)
+  let derivativeX, derivativeY
   if (lines) {
     try {
-      derivativeX = $ir.takeDerivative('x');
-      derivativeY = $ir.takeDerivative('y');
+      derivativeX = $ir.takeDerivative("x")
+      derivativeY = $ir.takeDerivative("y")
     } catch {}
   }
   const newCompiled = self.dsm_compileGLesmos(
-    $ir, $styles.color, $styles.fillOpacity ?? 0, $styles.lineOpacity, this.userData.lines !== false ? $styles.lineWidth : 0.0,
-    derivativeX, derivativeY
-  );
-  const prev =  $graphs[$graphs.length - 1];
+    $ir,
+    $styles.color,
+    $styles.fillOpacity ?? 0,
+    $styles.lineOpacity,
+    this.userData.lines !== false ? $styles.lineWidth : 0.0,
+    derivativeX,
+    derivativeY
+  )
+  const prev = $graphs[$graphs.length - 1]
   if (prev?.graphMode === "GLesmos") {
     // merge GLesmos graphs when possible
     newCompiled.hasOutlines = newCompiled.hasOutlines && prev.hasOutlines
-    const prevGL = prev.compiledGL;
+    const prevGL = prev.compiledGL
     // allow-ids: of, dep
     for (let dep of newCompiled.deps) {
       if (!prevGL.deps.includes(dep)) {
-        prevGL.deps.push(dep);
+        prevGL.deps.push(dep)
       }
     }
-    prevGL.chunks.push(...newCompiled.chunks);
+    prevGL.chunks.push(...newCompiled.chunks)
   } else {
     $graphs.push({
       graphMode: "GLesmos",

@@ -7,6 +7,7 @@
 **Description** `Replace "powered by desmos" with tips`
 
 **Find** => `from`
+
 ```js
 $DCGView.createElement(
   "div",
@@ -19,6 +20,7 @@ $DCGView.createElement(
 ```
 
 **Replace** `from` with
+
 ```js
 $DCGView.createElement(
   "div",
@@ -30,7 +32,7 @@ $DCGView.createElement(
   $DCGView.createElement(
     $DCGView.Components.If,
     {
-      predicate: () => DSM.showTips,
+      predicate: () => DSM.showTips
     },
     () => DSM.showTips?.createTipElement()
   )

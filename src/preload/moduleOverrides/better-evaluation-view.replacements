@@ -9,6 +9,7 @@
 Bindings
 
 **Find**
+
 ```js
 fraction: () => $Dcgview.createElement($StaticMathquillViewDefault, {latex
 ```
@@ -16,44 +17,37 @@ fraction: () => $Dcgview.createElement($StaticMathquillViewDefault, {latex
 Show exposed undefined values
 
 **Find** => `undefined`
+
 ```js
-undefined: () =>  $.createElement(
-    'span',
-    null,
-    $.const("undefined")
-  )
+undefined: () => $.createElement("span", null, $.const("undefined"))
 ```
 
 **Replace** `undefined` with
+
 ```js
-undefined: () => $Dcgview.Components.IfElse(
-    () => DSM.betterEvaluationView,
-    {
-      true: () => $Dcgview.createElement(
-        $StaticMathquillViewDefault,
-        {
-          latex: () => this.getNumberLabel().value,
-          config: $Dcgview.const({})
-        }
-      ),
-      false: () => $Dcgview.createElement(
-        "span",
-        null,
-        $Dcgview.const("undefined")
-      )
-    }
-  )
+undefined: () =>
+  $Dcgview.Components.IfElse(() => DSM.betterEvaluationView, {
+    true: () =>
+      $Dcgview.createElement($StaticMathquillViewDefault, {
+        latex: () => this.getNumberLabel().value,
+        config: $Dcgview.const({})
+      }),
+    false: () =>
+      $Dcgview.createElement("span", null, $Dcgview.const("undefined"))
+  })
 ```
 
 Show list elements
 
 **Find** => `list`
+
 ```js
 ()=>this.getEvaluationType(), {
 list: () => $.createElement(__oldList__)
 ```
 
 **Replace** `list` with
+
 ```js
 ()=>this.getEvaluationType(), {
 list: () => $Dcgview.Components.IfElse(
@@ -84,13 +78,16 @@ list: () => $Dcgview.Components.IfElse(
 
 Show color values
 **Find** => `color`
+
 ```js
 rgbcolor: () => $.createElement(__swatch__)
 ```
 
 **Replace** `color` with
+
 ```js
-rgbcolor: () => $Dcgview.createElement(
+rgbcolor: () =>
+  $Dcgview.createElement(
     "div",
     {
       class: $Dcgview.const("dsm-color-container")
@@ -102,12 +99,15 @@ rgbcolor: () => $Dcgview.createElement(
           let isEnabled = DSM.betterEvaluationView
           let pluginSettings = DSM.betterEvaluationView?.settings
           let isArray = Array.isArray(this.props.val())
-          return isEnabled && pluginSettings.colors && (!isArray || pluginSettings.lists && pluginSettings.colorLists)
+          return (
+            isEnabled &&
+            pluginSettings.colors &&
+            (!isArray || (pluginSettings.lists && pluginSettings.colorLists))
+          )
         }
       },
-      () => $Dcgview.createElement(
-        $StaticMathquillViewDefault,
-        {
+      () =>
+        $Dcgview.createElement($StaticMathquillViewDefault, {
           latex: () => {
             // allow-ids: rgb, hex
             let color = this.props.val()
@@ -123,15 +123,26 @@ rgbcolor: () => $Dcgview.createElement(
             let length = 6
             if (Array.isArray(color)) {
               color = color.map(rgb)
-              return "\\operatorname{rgb}\\left(\\left[" + color.slice(0,length).map(clist=>`\\left(${clist.join(",")}\\right)`).join(",") + (color.length > length ? `\\textcolor{gray}{...\\mathit{${color.length - length}\\ more}}` : "") + "\\right]\\right)"
+              return (
+                "\\operatorname{rgb}\\left(\\left[" +
+                color
+                  .slice(0, length)
+                  .map(clist => `\\left(${clist.join(",")}\\right)`)
+                  .join(",") +
+                (color.length > length
+                  ? `\\textcolor{gray}{...\\mathit{${
+                      color.length - length
+                    }\\ more}}`
+                  : "") +
+                "\\right]\\right)"
+              )
             } else {
               color = rgb(color)
               return "\\operatorname{rgb}\\left(" + color.join(",") + "\\right)"
             }
           },
           config: $Dcgview.const({})
-        }
-      )
+        })
     ),
     $Dcgview.createElement(__swatch__)
   )
@@ -146,11 +157,13 @@ rgbcolor: () => $Dcgview.createElement(
 Add a value field to "undefined" labels
 
 **Find** => `undefined`
+
 ```js
 if ($options = $options || {}, isNaN($val) || !isFinite($val)) return { type: "undefined" }
 ```
 
 **Replace** `undefined` with
+
 ```js
 if ($options = $options || {}, isNaN($val) || !isFinite($val)) return { type: "undefined", value: isNaN($val) ? "\\mathrm{NaN}" : $val === Infinity ? "\\infty" : $val === -Infinity ? "-\\infty" : "undefined"}
 ```
@@ -158,6 +171,7 @@ if ($options = $options || {}, isNaN($val) || !isFinite($val)) return { type: "u
 Distinguish between 0 and -0
 
 **Find** => `zero`
+
 ```js
 if ($ === 0 || $.zeroCutoff && Math.abs($) < $.zeroCutoff)
   return {
@@ -167,6 +181,7 @@ if ($ === 0 || $.zeroCutoff && Math.abs($) < $.zeroCutoff)
 ```
 
 **Replace** `zero` with
+
 ```js
 if ($val === 0) {
   if (!DSM.betterEvaluationView || Object.is($val, 0)) {
@@ -205,6 +220,7 @@ runs on the main page, not the worker.
 **worker_only**
 
 **Find** => `truncatedLatexLabelDef`
+
 ```js
 function $truncatedLatexLabel($e, $t) {
     let $r = $numericLabel($e, $t);
@@ -218,6 +234,7 @@ function $truncatedLatexLabel($e, $t) {
 ```
 
 **Replace** `truncatedLatexLabelDef` with
+
 ```js
 function $truncatedLatexLabel($e, $t) {
     let $r = $numericLabel($e, $t);

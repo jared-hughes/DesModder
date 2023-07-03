@@ -9,23 +9,27 @@ Replacements that apply to more than one plugin.
 **Description** `Duplicate metadata (e.g. GLesmos enabled, or pinned/unpinned) when an expression is duplicated`
 
 **Find**
+
 ```js
 copyExpressionToIndex(____) { __body__ }
 ```
 
 **Find** inside `body`:
+
 ```js
 let $to = this.createItemModel(
 ```
 
 **Find**
+
 ```js
 case "expression": $from =
 ```
 
 **Replace** `body` with
+
 ```js
-__body__;
+__body__
 DSM.metadata?.duplicateMetadata($to.id, $from.id)
 ```
 
@@ -38,12 +42,14 @@ Allows correct checking of the .glesmos metadata; otherwise, we run into `Calc.o
 **plugin** `GLesmos`
 
 **Find**
+
 ```js
 requestParseForAllItems() {__body__}
 ```
 
 **Replace** `body` with
+
 ```js
-DSM.metadata?.checkForMetadataChange();
+DSM.metadata?.checkForMetadataChange()
 __body__
 ```

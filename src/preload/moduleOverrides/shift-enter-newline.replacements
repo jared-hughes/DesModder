@@ -13,12 +13,14 @@ onKeydownEvent($) {__onKeydownEvent__}
 ```
 
 **Find** inside `onKeydownEvent` => `from`
+
 ```js
 $n === $enterKey && !$e.metaKey
   ? ($e.preventDefault(), this.props.onSpecialKey("Enter"))
 ```
 
 **Replace** `from` with
+
 ```js
 $n === $enterKey && !$e.metaKey
   && !($e.shiftKey && DSM.shiftEnterNewline)

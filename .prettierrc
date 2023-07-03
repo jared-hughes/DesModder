@@ -1,0 +1,13 @@
+{
+  "overrides": [
+    {
+      "files": "*.replacements",
+      "options": {
+        "parser": "markdown",
+        "trailingComma": "none",
+        "arrowParens": "avoid",
+        "semi": false
+      }
+    }
+  ]
+}
