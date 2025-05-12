@@ -10,11 +10,5 @@
     { "path": "../graph-state" },
     { "path": "../apply-replacements" }
   ],
-  "include": [
-    "**/*",
-    "../src",
-    "../loaders/utils.mjs",
-    "../prettier-doc",
-    "../text-mode-core-wise/up/latex-tree.ts"
-  ]
+  "include": ["**/*", "../src", "../loaders/utils.mjs"]
 }

@@ -102,3 +102,22 @@ $ImageIconView = class extends $.View {
 ```js
 $ImageIconView = (window.DesModderFragile ??= {}).ImageIconView
 ```
+
+## Extract shared module exports
+
+*Description* `Parse latex in Text Mode Wise`
+
+*worker_only*
+
+*Find* => `definition`
+
+```js
+function $parseLatexToGroup($){let{state:$,tree:$}=$($($),!1) ____}
+```
+
+*Replace* `definition` with
+
+```js
+__definition__
+(globalThis.DesModderFragile ??= {}).parseLatexToGroup = $parseLatexToGroup;
+```

@@ -4,6 +4,7 @@
   "references": [
     { "path": "../graph-state/tsconfig-build.json" },
     { "path": "../text-mode-core" },
+    { "path": "../text-mode-core-wise" },
     { "path": "../localization" },
     { "path": "../parsing" },
     { "path": "../metadata" },

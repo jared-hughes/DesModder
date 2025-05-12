@@ -15,6 +15,7 @@ import {
 import { GenericSettings, PluginID } from "../plugins";
 import { ItemModel } from "./models";
 import { GraphState } from "../../graph-state";
+import { LatexTree } from "../../text-mode-core-wise/up/latex-tree";
 
 export interface DWindow extends Window {
   DesModder: any;
@@ -27,6 +28,7 @@ export interface DWindow extends Window {
   DesModderFragile: {
     ExpressionView: ExpressionViewComponent;
     ImageIconView: typeof IconViewComponent;
+    parseLatexToGroup: (latex: string) => LatexTree;
   };
   Desmos: {
     Private: {
